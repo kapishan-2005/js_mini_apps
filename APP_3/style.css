@@ -1,0 +1,14 @@
+.bulb {
+  width: 100px;
+  height: 140px;
+  background-image: url("/APP_3/images/bulbs.png");  /* ← correct path */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(0.3);   /* bulb OFF */
+  transition: 0.3s;
+}
+
+.bulb.on {
+  filter: brightness(1.5) drop-shadow(0 0 20px #ffea00);  /* bulb ON glow */
+}
