@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="img" src="./girl.jpg" alt="hero">
+    <script>
+        document.getElementById("img").setAttribute("src","man.jpg");
+        const srcvalue =document.getElementById("img").getAttribute("src");
+        console.log(srcvalue);
+        document.getElementById("img").removeAttribute("src");
+    </script>
+</body>
+</html>
