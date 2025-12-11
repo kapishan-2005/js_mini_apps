@@ -1,0 +1,9 @@
+ 
+    body {
+      background: #f8f9fa;
+    }
+    .todo-item.completed {
+      text-decoration: line-through;
+      background-color: #d1ffd1 !important;
+    }
+  
