@@ -1,9 +1,98 @@
  
     body {
-      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
     }
-    .todo-item.completed {
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #00c6ff;
+      color: #003049;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+      background: #00e0ff;
+      transform: translateY(-1px);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background: rgba(255,255,255,0.15);
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    li.completed span {
       text-decoration: line-through;
-      background-color: #d1ffd1 !important;
+      opacity: 0.6;
     }
-  
+
+    .actions button {
+      background: transparent;
+      color: #fff;
+      padding: 4px 6px;
+      font-size: 14px;
+    }
+
+    .actions button:hover {
+      color: #ffd166;
+    }
+
+    .footer {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.85;
+    }

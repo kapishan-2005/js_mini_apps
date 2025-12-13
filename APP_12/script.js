@@ -1,38 +1,53 @@
+const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const taskCount = document.getElementById('taskCount');
 
-  const taskInput = document.getElementById("taskInput");
-  const addBtn = document.getElementById("addBtn");
-  const taskList = document.getElementById("taskList");
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-  addBtn.addEventListener("click", () => {
-    const taskText = taskInput.value.trim();
-
-    if (taskText === "") {
-      alert("Please enter a task!");
-      return;
+    function saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      taskCount.textContent = tasks.length;
     }
 
-    const li = document.createElement("li");
-    li.className = "list-group-item d-flex justify-content-between align-items-center todo-item";
+    function renderTasks() {
+      taskList.innerHTML = '';
+      tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        if (task.completed) li.classList.add('completed');
 
-    li.innerHTML = `
-      <span>${taskText}</span>
-      <button class="btn btn-sm btn-danger deleteBtn">Delete</button>
-    `;
+        li.innerHTML = `
+          <span onclick="toggleTask(${index})">${task.text}</span>
+          <div class="actions">
+            <button onclick="deleteTask(${index})">✖</button>
+          </div>
+        `;
 
-    taskList.appendChild(li);
-    taskInput.value = "";
-  });
-
-  // Event Delegation (click to complete or delete)
-  taskList.addEventListener("click", (e) => {
-    // delete
-    if (e.target.classList.contains("deleteBtn")) {
-      e.target.closest("li").remove();
-      return;
+        taskList.appendChild(li);
+      });
+      saveTasks();
     }
 
-    // mark complete
-    if (e.target.closest("li")) {
-      e.target.closest("li").classList.toggle("completed");
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (!text) return alert('Please enter a task');
+
+      tasks.push({ text, completed: false });
+      taskInput.value = '';
+      renderTasks();
     }
-  });
+
+    function toggleTask(index) {
+      tasks[index].completed = !tasks[index].completed;
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    taskInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') addTask();
+    });
+
+    renderTasks();
